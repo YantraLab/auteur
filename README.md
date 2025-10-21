@@ -1,4 +1,4 @@
-# Auteur - Your AI-Powered Filmmaking Studio <img src="auteur-logo.svg" alt="Auteur Logo" width="50"/>
+# <img src="auteur-logo.svg" alt="Auteur Logo" width="80"/> Auteur - Your AI-Powered Filmmaking Studio 
 
 **Auteur is a web-based, AI-powered studio that empowers filmmakers, content creators, and storytellers to move from a spark of an idea to a fully-realized production plan with unprecedented speed and creativity.**
 
