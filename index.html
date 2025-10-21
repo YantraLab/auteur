@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auteur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Monda:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-bg': '#F1F3F5',
+              'brand-surface': '#FFFFFF',
+              'brand-muted': '#E9ECEF',
+              'brand-text': '#212529',
+              'brand-text-dim': '#6C757D',
+              'brand-primary': '#6D597A',
+              'brand-secondary': '#4E3D59',
+            },
+            boxShadow: {
+                'card': '0 2px 4px rgba(0,0,0,0.05)',
+                'card-hover': '0 5px 15px rgba(0,0,0,0.08)',
+            },
+            fontFamily: {
+              sans: ['Monda', 'system-ui', 'sans-serif'],
+              'bitcount': ['"Bitcount Grid Single"', 'system-ui'],
+            }
+          },
+        },
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.25.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js"
+  }
+}
+</script>
+<link rel="stylesheet" href="/styles/ProfileCard.css">
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-bg text-brand-text">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
