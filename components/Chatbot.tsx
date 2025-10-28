@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenAI, Chat } from "@google/genai";
 import { SparklesIcon } from './icons';
-
-interface ChatbotProps {
-    onBack: () => void;
-}
+import type { Notification } from '../types';
 
 type Message = {
     sender: 'user' | 'bot';
     text: string;
 };
 
-const CHATBOT_SYSTEM_INSTRUCTION = 'You are a friendly and helpful AI assistant for a filmmaking app called Auteur. Your ONLY purpose is to help users with issues related to the Auteur application, including features, bugs, account problems, or billing. You MUST NEVER answer questions outside of this scope. If a user asks an unrelated question, politely decline and steer the conversation back to Auteur. Before providing a solution, ask clarifying questions to fully understand the user\'s problem.';
+const CHATBOT_SYSTEM_INSTRUCTION = 'You are a friendly and helpful AI assistant for a filmmaking app called Auteur. Your ONLY purpose is to help users with issues related to the Auteur application, including features, bugs, account problems, or billing. You MUST NEVER answer questions outside of this scope. If a user asks an unrelated question, politely decline and steer the conversation back to Auteur. You have access to recent notifications the user received; use this information to provide proactive, contextual help.';
 const NON_CONTEXTUAL_KEYWORDS = /auteur|project|board|script|gear|camera|style|generate|login|account|password|bug|error|issue|help|feature|support|billing|payment/i;
 const CACHED_RESPONSE = "I'm sorry, I can only assist with questions related to the Auteur application. How can I help you with your project or account?";
 
-export const Chatbot = ({ onBack }: ChatbotProps) => {
+interface ChatbotProps {
+    notifications: Notification[];
+}
+
+export const Chatbot = ({ notifications }: ChatbotProps) => {
     const [messages, setMessages] = useState<Message[]>([
         { sender: 'bot', text: 'Hello! I am the Auteur AI Assistant. How can I help you today with the application?' }
     ]);
@@ -23,6 +24,7 @@ export const Chatbot = ({ onBack }: ChatbotProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const chatSession = useRef<Chat | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const processedNotifications = useRef(new Set<string>());
 
     useEffect(() => {
         try {
@@ -39,6 +41,18 @@ export const Chatbot = ({ onBack }: ChatbotProps) => {
             setMessages(prev => [...prev, { sender: 'bot', text: 'Sorry, I am currently unavailable. Please try again later or contact support via email.' }]);
         }
     }, []);
+
+    useEffect(() => {
+        const latestUnread = notifications.find(n => !n.read && !processedNotifications.current.has(n.id));
+        if (latestUnread) {
+            const proactiveMessage = {
+                sender: 'bot' as const,
+                text: `I noticed you just received a notification: "${latestUnread.message}". Can I help you with that?`
+            };
+            setMessages(prev => [...prev, proactiveMessage]);
+            processedNotifications.current.add(latestUnread.id);
+        }
+    }, [notifications]);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -77,8 +91,7 @@ export const Chatbot = ({ onBack }: ChatbotProps) => {
     };
 
     return (
-        <div className="flex flex-col h-[65vh]">
-            <button onClick={onBack} className="text-sm font-semibold text-brand-primary hover:text-brand-secondary mb-4 self-start">&larr; Back to FAQ</button>
+        <div className="flex flex-col h-full">
             <div className="flex-grow bg-brand-bg/60 rounded-md p-4 overflow-y-auto space-y-4 border border-brand-muted/50">
                 {messages.map((msg, index) => (
                     <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>

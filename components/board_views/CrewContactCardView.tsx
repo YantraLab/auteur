@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import ProfileCard from '../ProfileCard';
-// Fix: Aliased Board as DocumentBoard to fix missing export error.
 import type { Board as DocumentBoard } from '../../types';
 
 // The shape of the crew data stored in the board's content

@@ -1,5 +1,24 @@
+// FIX: Add a type-only import for React to resolve the "Cannot find namespace 'React'" error.
+import type React from 'react';
 import type { NoteType, TextNote, ImageNote, Note } from './notes';
 export * from './notes';
+
+// FIX: Add type definition for lottie-player custom element.
+// This global declaration makes the type available in all JSX files, resolving errors when using the custom element.
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lottie-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
+        src?: string;
+        background?: string;
+        speed?: string;
+        autoplay?: boolean;
+        loop?: boolean;
+        controls?: boolean;
+      }, HTMLElement>;
+    }
+  }
+}
 
 export type GearType = 'Camera' | 'Lens' | 'Tripod' | 'Gimbal' | 'Filter' | 'Microphone' | 'Light' | 'Flash';
 
@@ -26,6 +45,23 @@ export interface ProjectSettings {
   projectType: ProjectType;
 }
 
+// --- USER TYPES ---
+export interface User {
+  id: string;
+  name: string;
+  avatarUrl: string;
+  color: string; // hex color for cursors, borders, etc.
+}
+
+// --- NOTIFICATION TYPES ---
+export interface Notification {
+  id: string;
+  message: string;
+  timestamp: Date;
+  read: boolean;
+}
+
+
 // --- BOARD TYPES ---
 
 // BoardType is now a flexible string to allow for custom plugin types.
@@ -40,7 +76,6 @@ export interface Board {
   id: string;
   title: string;
   type: BoardType;
-  // Fix: Added 'Note' to the import to resolve 'Cannot find name 'Note'' error.
   notes?: Note[]; // Primarily used by note-based boards like Ideaboard, Moodboard
   content?: string; // Used by document boards, can be markdown, JSON, or any string data
   documentType?: DocumentType; // Kept for potential categorization or legacy reasons
@@ -50,11 +85,28 @@ export interface Board {
   y: number; // grid row start
   w: number; // width in grid columns
   h: number; // height in grid units
+  
+  // New collaboration properties
+  focusedUserId?: string | null;
 }
 
+// --- PROJECT TEMPLATE TYPES ---
+
+// A board definition for a template. ID is optional as it will be generated on creation.
+export type TemplateBoard = Omit<Board, 'id' | 'focusedUserId'>;
+
+export interface ProjectTemplate {
+  name: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  boards: TemplateBoard[];
+}
+
+
 export interface Project {
-  id: string;
+  id:string;
   name: string;
   boards: Board[];
   settings: ProjectSettings;
+  activeUserIds: string[]; // IDs of users currently "in" this project
 }

@@ -23,7 +23,7 @@ interface CharacterEditorProps {
     onRemove: (id: string) => void;
 }
 
-const CharacterEditor = ({ profile, projectType, onFieldChange, onRemove }: CharacterEditorProps) => {
+const CharacterEditor: React.FC<CharacterEditorProps> = ({ profile, projectType, onFieldChange, onRemove }) => {
     const [openSections, setOpenSections] = useState({ core: true, development: true, main: true });
     const fileInputRef = useRef<HTMLInputElement>(null);
 

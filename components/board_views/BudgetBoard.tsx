@@ -113,7 +113,7 @@ export const BudgetBoard = ({ board, updateBoard }: BoardComponentProps) => {
                         </button>
                         {openCategories[category.title] && (
                             <div className="p-3 border-t border-brand-muted/70">
-                                <div className="grid grid-cols-[1fr_80px_100px_100px_40px] gap-x-4 text-xs text-brand-text-dim font-bold mb-2 px-2">
+                                <div className="hidden md:grid md:grid-cols-[1fr_80px_100px_100px_40px] gap-x-4 text-xs text-brand-text-dim font-bold mb-2 px-2">
                                     <span>Description</span>
                                     <span className="text-right">Qty</span>
                                     <span className="text-right">Rate</span>
@@ -121,19 +121,33 @@ export const BudgetBoard = ({ board, updateBoard }: BoardComponentProps) => {
                                     <span></span>
                                 </div>
                                 {category.items.map((item, itemIndex) => (
-                                    <div key={item.id} className="grid grid-cols-[1fr_80px_100px_100px_40px] gap-x-4 items-center group hover:bg-brand-muted/50 rounded p-1">
-                                        <input
-                                            type="text"
-                                            value={item.description}
-                                            onChange={(e) => handleItemChange(catIndex, itemIndex, 'description', e.target.value)}
-                                            readOnly={!item.isCustom}
-                                            placeholder="Custom item..."
-                                            className={`w-full bg-transparent p-1 rounded ${item.isCustom ? 'border border-transparent focus:outline-none focus:ring-1 focus:ring-brand-primary/50 focus:border-brand-primary/30' : 'font-medium'}`}
-                                        />
-                                        <input type="number" value={item.quantity} onChange={e => handleItemChange(catIndex, itemIndex, 'quantity', parseFloat(e.target.value))} className="w-full bg-brand-surface border border-brand-muted/80 p-1 rounded text-right focus:outline-none focus:ring-1 focus:ring-brand-primary/50" />
-                                        <input type="number" value={item.rate} onChange={e => handleItemChange(catIndex, itemIndex, 'rate', parseFloat(e.target.value))} className="w-full bg-brand-surface border border-brand-muted/80 p-1 rounded text-right focus:outline-none focus:ring-1 focus:ring-brand-primary/50" />
-                                        <span className="text-right p-1 text-brand-text-dim">{currencyFormatter.format((item.quantity || 0) * (item.rate || 0))}</span>
-                                        <button onClick={() => removeItem(catIndex, itemIndex)} className="text-red-500/70 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity flex justify-center items-center"><TrashIcon className="w-4 h-4" /></button>
+                                    <div key={item.id} className="p-2 border-b border-brand-muted/50 last:border-b-0 md:border-none md:p-1 md:grid md:grid-cols-[1fr_80px_100px_100px_40px] md:gap-x-4 md:items-center group hover:bg-brand-muted/50 rounded">
+                                        <div className="flex justify-between items-center">
+                                            <input
+                                                type="text"
+                                                value={item.description}
+                                                onChange={(e) => handleItemChange(catIndex, itemIndex, 'description', e.target.value)}
+                                                readOnly={!item.isCustom}
+                                                placeholder="Custom item..."
+                                                className={`w-full bg-transparent p-1 rounded ${item.isCustom ? 'border border-transparent focus:outline-none focus:ring-1 focus:ring-brand-primary/50 focus:border-brand-primary/30' : 'font-medium'}`}
+                                            />
+                                            <button onClick={() => removeItem(catIndex, itemIndex)} className="md:hidden text-red-500/70 hover:text-red-500"><TrashIcon className="w-4 h-4" /></button>
+                                        </div>
+                                        <div className="mt-2 grid grid-cols-3 gap-2 md:contents">
+                                            <div className="md:contents">
+                                                <label className="text-xs text-brand-text-dim md:hidden">Qty</label>
+                                                <input type="number" value={item.quantity} onChange={e => handleItemChange(catIndex, itemIndex, 'quantity', parseFloat(e.target.value))} className="w-full bg-brand-surface border border-brand-muted/80 p-1 rounded text-right focus:outline-none focus:ring-1 focus:ring-brand-primary/50" />
+                                            </div>
+                                            <div className="md:contents">
+                                                <label className="text-xs text-brand-text-dim md:hidden">Rate</label>
+                                                <input type="number" value={item.rate} onChange={e => handleItemChange(catIndex, itemIndex, 'rate', parseFloat(e.target.value))} className="w-full bg-brand-surface border border-brand-muted/80 p-1 rounded text-right focus:outline-none focus:ring-1 focus:ring-brand-primary/50" />
+                                            </div>
+                                            <div className="md:contents">
+                                                 <label className="text-xs text-brand-text-dim md:hidden">Total</label>
+                                                <span className="text-right p-1 text-brand-text-dim flex items-center justify-end h-full">{currencyFormatter.format((item.quantity || 0) * (item.rate || 0))}</span>
+                                            </div>
+                                        </div>
+                                        <button onClick={() => removeItem(catIndex, itemIndex)} className="hidden md:flex text-red-500/70 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity justify-center items-center"><TrashIcon className="w-4 h-4" /></button>
                                     </div>
                                 ))}
                                 <button onClick={() => addCustomItem(catIndex)} className="text-xs font-semibold text-brand-primary hover:text-brand-secondary mt-2 flex items-center gap-1 px-1 py-2">

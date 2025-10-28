@@ -11,20 +11,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             colors: {
-              'brand-bg': '#F1F3F5',
-              'brand-surface': '#FFFFFF',
-              'brand-muted': '#E9ECEF',
-              'brand-text': '#212529',
-              'brand-text-dim': '#6C757D',
+              'brand-bg': 'rgb(var(--color-brand-bg) / <alpha-value>)',
+              'brand-surface': 'rgb(var(--color-brand-surface) / <alpha-value>)',
+              'brand-muted': 'rgb(var(--color-brand-muted) / <alpha-value>)',
+              'brand-text': 'rgb(var(--color-brand-text) / <alpha-value>)',
+              'brand-text-dim': 'rgb(var(--color-brand-text-dim) / <alpha-value>)',
               'brand-primary': '#6D597A',
               'brand-secondary': '#4E3D59',
+              'brand-accent-creative': '#A491D3',
+              'brand-accent-document': '#8FA6CB',
+              'brand-accent-ai': '#81C7BE',
             },
             boxShadow: {
                 'card': '0 2px 4px rgba(0,0,0,0.05)',
-                'card-hover': '0 5px 15px rgba(0,0,0,0.08)',
+                'card-hover': '0 8px 25px rgba(33, 37, 41, 0.1)',
             },
             fontFamily: {
               sans: ['Monda', 'system-ui', 'sans-serif'],
@@ -34,19 +38,39 @@
         },
       }
     </script>
+    <style>
+      :root {
+        --color-brand-bg: 241 243 245;
+        --color-brand-surface: 255 255 255;
+        --color-brand-muted: 233 236 239;
+        --color-brand-text: 33 37 41;
+        --color-brand-text-dim: 108 117 125;
+      }
+      .dark {
+        --color-brand-bg: 24 26 27;
+        --color-brand-surface: 37 40 42;
+        --color-brand-muted: 52 58 64;
+        --color-brand-text: 222 226 230;
+        --color-brand-text-dim: 134 142 150;
+      }
+      .dark .shadow-card-hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+    </style>
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.25.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.25.0",
     "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js"
   }
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <link rel="stylesheet" href="/styles/ProfileCard.css">
-<link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-brand-bg text-brand-text">
     <div id="root"></div>

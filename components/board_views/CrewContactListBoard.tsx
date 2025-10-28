@@ -79,44 +79,37 @@ export const CrewContactListBoard = ({ board, updateBoard }: BoardComponentProps
       <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
       <div className="space-y-3">
         {contacts.map((contact) => (
-          <div key={contact.id} className="grid grid-cols-[auto_1fr_1fr_1fr_1fr_auto] gap-3 items-center group bg-brand-bg/50 p-2 rounded-md border border-brand-muted/70">
-            <button onClick={() => triggerUpload(contact.id)} className="w-12 h-12 rounded-full group bg-brand-bg border border-brand-muted hover:border-brand-primary flex items-center justify-center flex-shrink-0">
-                {contact.imageUrl ? (
-                <img src={contact.imageUrl} alt={contact.name} className="w-full h-full object-cover rounded-full" />
-                ) : (
-                <ImageIcon className="w-5 h-5 text-brand-text-dim" />
-                )}
-            </button>
-            <input
-              type="text"
-              value={contact.name}
-              onChange={(e) => handleItemChange(contact.id, 'name', e.target.value)}
-              placeholder="Name"
-              className="w-full bg-brand-surface p-2 rounded border border-brand-muted/80 focus:outline-none focus:ring-1 focus:ring-brand-primary/50"
-            />
-            <input
-              type="text"
-              value={contact.role}
-              onChange={(e) => handleItemChange(contact.id, 'role', e.target.value)}
-              placeholder="Role (e.g., Director)"
-              className="w-full bg-brand-surface p-2 rounded border border-brand-muted/80 focus:outline-none focus:ring-1 focus:ring-brand-primary/50"
-            />
-            <input
-              type="email"
-              value={contact.email}
-              onChange={(e) => handleItemChange(contact.id, 'email', e.target.value)}
-              placeholder="Email"
-              className="w-full bg-brand-surface p-2 rounded border border-brand-muted/80 focus:outline-none focus:ring-1 focus:ring-brand-primary/50"
-            />
-            <input
-              type="tel"
-              value={contact.phone}
-              onChange={(e) => handleItemChange(contact.id, 'phone', e.target.value)}
-              placeholder="Phone"
-              className="w-full bg-brand-surface p-2 rounded border border-brand-muted/80 focus:outline-none focus:ring-1 focus:ring-brand-primary/50"
-            />
-            <button onClick={() => removeContact(contact.id)} className="text-red-500/70 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity flex justify-center items-center">
-              <TrashIcon className="w-5 h-5" />
+          <div key={contact.id} className="group bg-brand-bg/50 p-3 rounded-md border border-brand-muted/70 block lg:grid lg:grid-cols-[auto_1fr_1fr_1fr_1fr_auto] lg:gap-3 lg:items-center">
+            <div className="flex items-center gap-4 col-span-1">
+                <button onClick={() => triggerUpload(contact.id)} className="w-12 h-12 rounded-full group bg-brand-bg border border-brand-muted hover:border-brand-primary flex items-center justify-center flex-shrink-0">
+                    {contact.imageUrl ? (
+                        <img src={contact.imageUrl} alt={contact.name} className="w-full h-full object-cover rounded-full" />
+                    ) : (
+                        <ImageIcon className="w-5 h-5 text-brand-text-dim" />
+                    )}
+                </button>
+                <div className="lg:hidden flex-grow">
+                    <input type="text" value={contact.name} onChange={(e) => handleItemChange(contact.id, 'name', e.target.value)} placeholder="Name" className="w-full bg-transparent font-semibold focus:outline-none focus:ring-1 focus:ring-brand-primary/50 rounded p-1" />
+                    <input type="text" value={contact.role} onChange={(e) => handleItemChange(contact.id, 'role', e.target.value)} placeholder="Role" className="w-full bg-transparent text-xs text-brand-text-dim focus:outline-none focus:ring-1 focus:ring-brand-primary/50 rounded p-1" />
+                </div>
+            </div>
+
+            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 lg:contents">
+                 <input type="text" value={contact.name} onChange={(e) => handleItemChange(contact.id, 'name', e.target.value)} placeholder="Name" className="hidden lg:block w-full bg-brand-surface p-2 rounded border border-brand-muted/80 focus:outline-none focus:ring-1 focus:ring-brand-primary/50"/>
+                 <input type="text" value={contact.role} onChange={(e) => handleItemChange(contact.id, 'role', e.target.value)} placeholder="Role (e.g., Director)" className="hidden lg:block w-full bg-brand-surface p-2 rounded border border-brand-muted/80 focus:outline-none focus:ring-1 focus:ring-brand-primary/50"/>
+                 <div>
+                    <label className="text-xs text-brand-text-dim lg:hidden mb-1 block">Email</label>
+                    <input type="email" value={contact.email} onChange={(e) => handleItemChange(contact.id, 'email', e.target.value)} placeholder="Email" className="w-full bg-brand-surface p-2 rounded border border-brand-muted/80 focus:outline-none focus:ring-1 focus:ring-brand-primary/50"/>
+                 </div>
+                 <div>
+                    <label className="text-xs text-brand-text-dim lg:hidden mb-1 block">Phone</label>
+                    <input type="tel" value={contact.phone} onChange={(e) => handleItemChange(contact.id, 'phone', e.target.value)} placeholder="Phone" className="w-full bg-brand-surface p-2 rounded border border-brand-muted/80 focus:outline-none focus:ring-1 focus:ring-brand-primary/50"/>
+                 </div>
+            </div>
+
+            <button onClick={() => removeContact(contact.id)} className="col-span-1 mt-3 w-full justify-center py-1 rounded bg-red-500/10 text-red-600 lg:w-auto lg:py-0 lg:bg-transparent lg:text-red-500/70 hover:text-red-500 lg:opacity-0 group-hover:opacity-100 transition-opacity flex items-center">
+              <TrashIcon className="w-4 h-4" />
+              <span className="ml-2 lg:hidden">Remove</span>
             </button>
           </div>
         ))}

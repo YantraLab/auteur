@@ -1,4 +1,5 @@
-import type { GearType, FrameRate, AspectRatio, Resolution, ProjectType } from './types';
+import type { GearType, FrameRate, AspectRatio, Resolution, ProjectType, ProjectTemplate } from './types';
+import { CameraIcon, RectangleStackIcon, FolderIcon, SparklesIcon } from './components/icons';
 
 export const FRAME_RATES: FrameRate[] = ['24fps', '25fps', '30fps', '60fps', '120fps'];
 export const ASPECT_RATIOS: AspectRatio[] = ['16:9', '4:3', '1.85:1', '2.39:1 (Scope)'];
@@ -75,4 +76,64 @@ export const BUDGET_TEMPLATE_STRUCTURE = [
             { name: 'Festival Fees' },
         ],
     },
+];
+
+export const SINGLETON_BOARD_TYPES: string[] = [
+    'DOCUMENT_SCRIPT',
+    'DOCUMENT_VISUAL_STYLE',
+    'DOCUMENT_CINEMATOGRAPHY',
+    'DOCUMENT_STORY_TREATMENT',
+    'DOCUMENT_SHOT_LIST',
+    'DOCUMENT_CHARACTER_PROFILE',
+    'DOCUMENT_SCRIPT_BREAKDOWN',
+    'DOCUMENT_CALL_SHEET',
+    'DOCUMENT_BUDGET',
+    'DOCUMENT_EQUIPMENT_CHECKLIST',
+    'DOCUMENT_CREW_CONTACT_LIST',
+    'DOCUMENT_CONTINUITY_LOG',
+    'PLUGIN_LOGLINE_TESTER',
+];
+
+export const PROJECT_TEMPLATES: ProjectTemplate[] = [
+    {
+        name: 'Blank Project',
+        description: 'Start fresh with a single ideaboard and build your vision from the ground up.',
+        icon: SparklesIcon,
+        boards: [
+            { type: 'IDEABOARD', title: 'Ideaboard', notes: [], x: 0, y: 0, w: 1, h: 2 },
+        ],
+    },
+    {
+        name: 'Short Film',
+        description: 'A structured template for narrative filmmaking, from script to production planning.',
+        icon: CameraIcon,
+        boards: [
+            { type: 'IDEABOARD', title: 'Brainstorming & Ideas', notes: [], x: 0, y: 0, w: 1, h: 2 },
+            { type: 'DOCUMENT_STORY_TREATMENT', title: 'Story Treatment', content: '', x: 1, y: 0, w: 2, h: 3 },
+            { type: 'DOCUMENT_CHARACTER_PROFILE', title: 'Character Profiles', content: '[]', x: 0, y: 2, w: 1, h: 3 },
+            { type: 'DOCUMENT_SCRIPT', title: 'Script', content: '', x: 1, y: 3, w: 2, h: 4 },
+        ],
+    },
+    {
+        name: 'Documentary',
+        description: 'Organize your research, interviews, and structure for non-fiction storytelling.',
+        icon: RectangleStackIcon,
+        boards: [
+            { type: 'IDEABOARD', title: 'Research & Key Points', notes: [], x: 0, y: 0, w: 1, h: 3 },
+            { type: 'DOCUMENT_STORY_TREATMENT', title: 'Narrative Outline', content: '', x: 1, y: 0, w: 2, h: 3 },
+            { type: 'DOCUMENT_CREW_CONTACT_LIST', title: 'Interview Subjects', content: '[]', x: 0, y: 3, w: 1, h: 2 },
+            { type: 'DOCUMENT_EQUIPMENT_CHECKLIST', title: 'Gear Checklist', content: '[]', x: 1, y: 3, w: 1, h: 2 },
+        ],
+    },
+    {
+        name: 'Web Series',
+        description: 'Plan your episodic content with boards for series-level and episode-specific development.',
+        icon: FolderIcon,
+        boards: [
+            { type: 'DOCUMENT_STORY_TREATMENT', title: 'Series Bible', content: '', x: 0, y: 0, w: 2, h: 3 },
+            { type: 'DOCUMENT_CHARACTER_PROFILE', title: 'Main Characters', content: '[]', x: 0, y: 3, w: 1, h: 3 },
+            { type: 'DOCUMENT_SCRIPT', title: 'Episode 1 Script', content: '', x: 1, y: 3, w: 2, h: 4 },
+            { type: 'DOCUMENT_BUDGET', title: 'Series Budget', content: '', x: 2, y: 0, w: 1, h: 3 },
+        ],
+    }
 ];

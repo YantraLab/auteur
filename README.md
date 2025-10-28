@@ -1,4 +1,6 @@
-# <img src="auteur-logo.svg" alt="Auteur Logo" width="80"/> Auteur - Your AI-Powered Filmmaking Studio 
+# Auteur - Your AI-Powered Filmmaking Studio
+
+![Auteur Logo](auteur-logo.svg)
 
 **Auteur is a web-based, AI-powered studio that empowers filmmakers, content creators, and storytellers to move from a spark of an idea to a fully-realized production plan with unprecedented speed and creativity.**
 
@@ -10,39 +12,42 @@ It's a digital workspace that combines flexible idea management with the powerfu
 
 Auteur is designed to be an intuitive and powerful partner throughout the pre-production process.
 
-*   **🧠 AI Script & Cinematography Generation:** At the heart of Auteur is its ability to synthesize your ideas. Combine notes from your Ideaboards, images from Moodboards, your specific cinematic style, project settings, and even your personal gear inventory. With a single click, Auteur generates a complete, professionally formatted script, a detailed visual style guide, and a practical cinematography plan with shot lists and specific gear recommendations.
+*   **🧠 AI-Powered Pre-Production Pipeline:** This is the core magic. Auteur synthesizes your scattered ideas, mood board images, project settings, cinematic style, and even your personal gear inventory. With a few clicks, it generates:
+    *   A complete, professionally formatted **first-draft script**.
+    *   A detailed **visual style guide** with notes on color, lighting, and mood.
+    *   A practical **cinematography plan** with shot lists and gear recommendations tailored to *your* equipment.
 
-*   **📋 Dynamic & Specialized Boards:** Your project workspace is a flexible grid of boards. You're not limited to just one type:
-    *   **Ideaboard:** Quickly jot down text-based notes and concepts.
-    *   **Moodboard & Storyboard:** Collect inspirational images, upload your own, and add captions.
-    *   **Document Boards:** Utilize a suite of templates for professional filmmaking documents, including:
-        *   Story Treatments
-        *   Character Profiles
-        *   Budget Breakdowns
-        *   Shot Lists
-        *   Equipment Checklists
-        *   Crew Contact Lists
-        *   ...and more!
+*   **🎬 From Script to Shoot:** Auteur doesn't stop at the script. It automates the tedious parts of production planning:
+    *   **AI Script Breakdown:** Automatically analyze your script to create a detailed scene-by-scene breakdown of characters, props, wardrobe, and more.
+    *   **AI Call Sheet Generation:** Turn your script breakdown into a professional one-day call sheet, complete with schedules and cast/crew call times.
 
-*   **🤖 AI-Powered Storyboarding:** Don't just find images—create them. On any Storyboard, you can type a description of a scene or shot, and Auteur's integrated image generation AI will create a visual representation for you, helping you bring your vision to life instantly.
+*   **📋 Comprehensive Board System:** Your workspace is a flexible grid of specialized boards for every stage of development:
+    *   **Creative Boards:** Ideaboard for text notes, Moodboard & Storyboard for visual planning.
+    *   **Document Boards:** A full suite of templates including Story Treatments, Character Profiles, Budgets, Shot Lists, Equipment Checklists, and Crew Contact Lists.
 
-*   **📷 Smart Gear Management:** Log all your cameras, lenses, microphones, and other equipment in the Gear Manager. The AI uses this specific inventory to provide practical, actionable cinematography advice tailored to the tools you actually own.
+*   **🤖 AI-Powered Storyboarding:** Bring your vision to life instantly. On any Storyboard, type a description of a shot, and Auteur's integrated image generation AI will create it for you.
 
-*   **🎨 Interactive Visualizations:** For Character Profiles and Crew Contact Lists, Auteur offers a unique full-screen "Chroma View"—an interactive grid of stunning, holographic profile cards that bring your cast and crew to life in a visually engaging way.
+*   **✨ Dynamic Character & Crew Views:** Go beyond static lists. View your characters and crew in a stunning, interactive fullscreen grid of holographic profile cards, making your project feel alive.
 
-*   **HELPDESK and FAQ:** Got a question? The built-in Help Desk provides a comprehensive FAQ and a specialized AI Chatbot trained to assist *only* with Auteur-related issues, ensuring you get the help you need without leaving the app.
+*   **📷 Smart Gear Management:** Log your cameras, lenses, and other equipment in the Gear Manager. The AI uses this specific inventory to provide practical cinematography advice tailored to the tools you actually own.
+
+*   **💬 Integrated Helpdesk:** Get unstuck without leaving the app. The built-in Help Desk provides a comprehensive FAQ and a specialized AI Chatbot trained to assist with any Auteur-related questions.
 
 ---
 
 ### 🚀 Getting Started: A Quick Guide
 
-1.  **Create a Project:** In the sidebar, click `+ New Project`. Your new workspace will appear. Give it a name by clicking the title at the top.
-2.  **Add Your Ideas:**
-    *   Use the default **Ideaboard** to write down story concepts, dialogue snippets, or random thoughts.
-    *   Click `Add Board` to create a **Moodboard**. Upload images that capture the tone and feel of your project.
-3.  **Define Your Style:** Open the **Project Settings**. Here you can set the technical specs (aspect ratio, resolution) and, most importantly, define the **Cinematic Style**. Use the presets or write your own detailed description.
-4.  **Log Your Gear:** Click `Manage Gear` in the sidebar and add your filmmaking equipment. The more specific you are, the better the AI's recommendations will be.
-5.  **Generate!** Once you have some ideas, a style, and your gear logged, click the big `Generate Script & Cinematography` button. Watch as Auteur creates new boards containing your script and production plan.
+1.  **Create a Project:** Use the main menu to start a new project from a template (like 'Short Film') or a blank canvas.
+2.  **Flesh out the Idea:**
+    *   Use the **Ideaboard** to write down story concepts, dialogue, or random thoughts.
+    *   Create a **Moodboard** and upload images that capture the project's tone.
+    *   Develop your **Character Profiles** and **Story Treatment**.
+3.  **Define Your Vision:** Open **Project Settings** to set technical specs (aspect ratio, etc.) and, most importantly, describe your desired **Cinematic Style**.
+4.  **Log Your Gear:** Open **Manage Gear** from the main menu and add your equipment. The more specific you are, the better the AI's recommendations.
+5.  **Generate & Refine:**
+    *   Open the **Script** board and click `Generate with AI` in the footer. Auteur will write a first draft based on all your inputs.
+    *   Refine the script in the editor. Once you're ready, click `Generate Breakdown` in the script's footer. A new **Script Breakdown** board will be created.
+    *   Open the new breakdown board and click `Generate Call Sheet` to get a schedule for your first day of shooting!
 
 ---
 
@@ -100,7 +105,7 @@ We believe in the power of collaboration and welcome contributions from the comm
         ```
         API_KEY="YOUR_GOOGLE_GEMINI_API_KEY"
         ```
-    *   *Note: The `.env` file is included in `.gitignore` and should never be committed to the repository.*
+    *   *Note: This is a standard method for local development and ensures your private key is not checked into version control. The `.env` file is included in `.gitignore` and should never be committed to the repository.*
 4.  **Create a new branch** for your feature or bug fix: `git checkout -b feature/my-awesome-feature`
 5.  **Make your changes** and commit them with clear, descriptive messages.
 6.  **Push to your branch:** `git push origin feature/my-awesome-feature`

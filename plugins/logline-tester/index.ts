@@ -1,6 +1,6 @@
 import { registerPlugin } from '../../pluginSystem/pluginRegistry';
 import { DocumentTextIcon } from '../../components/icons';
-import { LoglineTesterView } from './LoglineTesterView';
+import { LoglineTesterView } from '../../LoglineTesterView';
 import type { BoardPlugin } from '../../pluginSystem/pluginTypes';
 
 const loglineTesterPlugin: BoardPlugin = {

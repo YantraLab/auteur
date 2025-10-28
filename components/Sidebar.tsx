@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Project } from '../types';
-import { CameraIcon, PlusIcon } from './icons';
+import { CameraIcon, PlusIcon, XMarkIcon } from './icons';
 
 interface SidebarProps {
     projects: Project[];
@@ -8,11 +8,22 @@ interface SidebarProps {
     setActiveProjectId: (id: string | null) => void;
     createNewProject: () => void;
     setGearModalOpen: (isOpen: boolean) => void;
+    isSidebarOpen: boolean;
+    setSidebarOpen: (isOpen: boolean) => void;
 }
 
-export const Sidebar = ({ projects, activeProjectId, setActiveProjectId, createNewProject, setGearModalOpen }: SidebarProps) => {
+export const Sidebar = ({ projects, activeProjectId, setActiveProjectId, createNewProject, setGearModalOpen, isSidebarOpen, setSidebarOpen }: SidebarProps) => {
     return (
-        <aside className="w-64 bg-brand-bg flex flex-col p-4 border-r border-brand-muted pt-24">
+        <aside className={`fixed inset-y-0 left-0 w-64 bg-brand-bg flex flex-col p-4 border-r border-brand-muted z-40 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:pt-24 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <div className="md:hidden flex justify-between items-center mb-4 flex-shrink-0">
+                <div className="flex items-center">
+                    <img src="/film.png" alt="Auteur Logo" className="h-8 w-8 mr-2"/>
+                    <h1 className="font-bitcount text-2xl font-light text-brand-text" style={{ fontVariationSettings: '"slnt" 0, "CRSV" 0.5, "ELSH" 0, "ELXP" 0' }}>Auteur</h1>
+                </div>
+                <button onClick={() => setSidebarOpen(false)} className="p-1 text-brand-text-dim">
+                    <XMarkIcon className="w-6 h-6" />
+                </button>
+            </div>
             <div className="flex-grow overflow-y-auto">
                 <h2 className="text-xs font-semibold text-brand-text-dim uppercase tracking-wider mb-2 px-3">Projects</h2>
                 <ul>

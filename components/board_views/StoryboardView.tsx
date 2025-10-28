@@ -3,11 +3,14 @@ import type { ImageNote } from '../../types';
 import type { BoardComponentProps } from '../../pluginSystem/pluginTypes';
 import { TrashIcon, SparklesIcon } from '../icons';
 
-const EmptyState = ({ children }: { children: React.ReactNode }) => (
-    <div className="flex items-center justify-center h-full min-h-[150px] p-4 text-center">
-        <p className="text-xs text-brand-text-dim leading-relaxed max-w-md">{children}</p>
-    </div>
-);
+// FIX: Explicitly type EmptyState with React.FC to resolve props type inference issues.
+const EmptyState: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    return (
+        <div className="flex items-center justify-center h-full min-h-[150px] p-4 text-center">
+            <p className="text-xs text-brand-text-dim leading-relaxed max-w-md">{children}</p>
+        </div>
+    );
+};
 
 export const StoryboardView = ({ board, removeNoteFromBoard, handleNoteUpdate }: BoardComponentProps) => {
     if (!board.notes || board.notes.length === 0) {

@@ -1,4 +1,5 @@
-import type { Board, Gear, Note, ProjectSettings } from '../types';
+import type React from 'react';
+import type { Board, Gear, Note, ProjectSettings, User } from '../types';
 
 // Props that will be passed to every board view component from the main app
 export interface BoardComponentProps {
@@ -18,6 +19,25 @@ export interface BoardComponentProps {
     imageGenerationState?: { prompt: string; isLoading: boolean; error: string | null };
     setImageGenerationStateForBoard?: (state: { prompt:string; isLoading: boolean; error: string | null }) => void;
     handleGenerateImageForStoryboard?: () => void;
+    
+    // FIX: Add props for AI content generation, used by components like ScriptFooter
+    // Props for AI content generation
+    isGenerating?: boolean;
+    onGenerateScript?: () => void;
+    onGenerateVisualStyle?: () => void;
+    onGenerateCinematography?: () => void;
+
+    // Props for script breakdown
+    handleGenerateBreakdown?: (scriptContent: string) => Promise<void>;
+    isBreakdownLoading?: boolean;
+    
+    // Props for call sheet
+    handleGenerateCallSheet?: (breakdownContent: string) => Promise<void>;
+    isCallSheetLoading?: boolean;
+
+    // Props for collaboration
+    allUsers?: User[];
+    currentUser?: User;
 }
 
 // Defines the structure every board plugin must adhere to
