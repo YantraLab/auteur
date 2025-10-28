@@ -1,8 +1,8 @@
-# Auteur - Your AI-Powered Filmmaking Studio
+<p align="center">
+  <img src="auteur-logo.png" alt="Auteur Logo" width="300" height="300">
+</p>
 
-<img src="auteur-logo.png" alt="Auteur Logo" width="64" height="64">  
-
-**Auteur is a web-based, AI-powered studio that empowers filmmakers, content creators, and storytellers to move from a spark of an idea to a fully-realized production plan with unprecedented speed and creativity.**
+**Auteur is web-based, AI-powered studio that empowers filmmakers, content creators, and storytellers to move from a spark of an idea to a fully-realized production plan with unprecedented speed and creativity.**
 
 It's a digital workspace that combines flexible idea management with the powerful generative capabilities of Google's Gemini API, transforming fragmented notes and images into professional scripts, visual guides, and production documents.
 
